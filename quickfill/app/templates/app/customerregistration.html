@@ -1,0 +1,57 @@
+{% extends 'app/base.html' %}
+{% block title %}Register{% endblock title %}
+{% block body %}
+{% load static %}
+
+<style>
+    .weight{
+        font-family: Gilroy;
+        font-weight: 500;
+    }
+    
+</style>
+
+<section class="vh-100 weight" style="overflow: hidden; background-color: #429EBD; background: linear-gradient(#000000aa, #00000000), url({% static 'app/img/banner/bgp.jpg' %}); background-size: cover;">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-left align-items-center h-100">
+        <div class="col-md-6">
+
+          <div class="card text-black border-0" style="margin: 50px; margin-top: 120px; border-radius: 0.7rem; background: hsla(0, 0%, 100%, 0.55); backdrop-filter: blur(30px);">
+            <div class="card-body p-5 text-left">
+              <div class="p-0">
+                <h2 class="fw-bold mb-2 text-uppercase text-success">REGISTER</h2>
+                <p class="text-50 mb-5">Please enter your details below!</p>
+
+                <form action="" method="post" novalidate class="size">
+                  {% csrf_token %}
+                  {% for fm in form %}
+                    {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
+                    <br>
+                  {% endfor %}
+
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-success px-4 fw-bold">Register</button>
+                  </div>
+                
+                </form>
+                <br>
+                <p class="mb-0 mt-0">
+                  Already an User?
+                  <a href="{% url 'login' %}" class="text-50 fw-bold text-success">Login</a>
+                </p>
+
+                {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                        <p class="alert alert-danger my-3">{{error}}</p>
+                    {% endfor %}
+                {% endif %}
+              
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock body %}

@@ -1,0 +1,47 @@
+{% extends 'app/base.html' %}
+{% block title %}Update Address{% endblock title %}
+{% block body %}
+{% load static %}
+
+<style>
+    *{
+        font-family: Gilroy;
+    }
+
+    .container{
+        font-weight: 500;
+    }
+
+    .card{
+        background: rgba(16, 139, 0, 0.12);
+    }
+</style>
+
+<br><br><br>
+<div class="container">
+    <div class="row">
+        <h2 class="fw-bold">Welcome <span class="text-success">{{request.user}}</span>!</h2>
+
+        <div class="card shadow border-0 py-4 px-3 col-sm-8 offset-sm-1">
+            <form action="" method="post">
+                {% csrf_token %}
+                {% for fm in form %}
+                        {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
+                        <br>
+                {% endfor %}
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-success px-4 fw-bold">Submit</button>
+                    <a href="{% url 'address' %}" type="button" class="btn btn-success fw-bold">Back</a>
+                </div>
+                {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                        <p class="alert alert-danger my-3">{{error}}</p>
+                    {% endfor %}
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

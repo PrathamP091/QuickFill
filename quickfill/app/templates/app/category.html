@@ -1,0 +1,56 @@
+{% extends 'app/base.html' %}
+{% block title %}Category{% endblock title %}
+{% block body %}
+
+<style>
+    *{
+        font-family: Gilroy;
+    }
+</style>
+
+<br><br><br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="list-group">    
+                {% for val in name %}
+                <a href="{% url 'category-title' val.name %}" class="list-group-item list-group-item-action" aria-current="true">{{val.name}}</a>
+                {% endfor %}
+            </div>    
+        </div>
+
+        <div class="col-sm-9">
+            <div class="row">
+                {% for prod in product %}
+                <div class="card col mx-4" style="width: 18rem;">
+                    <a href="{% url 'product-detail' prod.id %}" class="btn text-decoration-none">
+                    <img src='/media/{{prod.image}}' width="300px" height="200px" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title fw-bold">{{prod.name}}</h5>
+                      <h4 class="card-text fw-bold text-success">Rs. {{prod.price}}</h4>
+                    </div>
+                </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        {% comment %} <div class="col-sm-8">
+            <div class="row">
+                {% for prod in product %}
+                    <div class="col text-center mb-4">
+                        <a href="#" class="card">
+                            <div>
+                                <img src="{{prod.product_image.url}}" width="300px" height="200px" alt="">
+                                <div class="fw-bold">{{prod.name}}</div>
+                                <div class="fw-bold text-success">RS. {{prod.price}}</div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div> {% endcomment %}
+    </div>
+</div>
+
+{% endblock body %}

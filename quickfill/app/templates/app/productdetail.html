@@ -1,0 +1,55 @@
+{% extends 'app/base.html' %}
+{% block title %}Category{% endblock title %}
+{% block body %}
+{% load static %}
+
+<style>
+    *{
+        font-family: Gilroy;
+    }
+
+    .center{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 0px;
+        width: 70rem;
+    }
+
+    .margin{
+        margin-left: 13px;
+    }
+
+    .btn-lg {
+        max-width: 680px;
+    }
+</style>
+
+<div class="container">
+    <div class="center">
+        <div class="card p-5">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src='/media/{{product.image}}' height="300px" width="" class="" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h1 class="card-title fw-bold">{{product.name}}</h1>
+                        <h5 class="card-text fw-semibold">Fueld By - {{product.subcategory}}</h5>
+                        <p class="card-text fw-semibold">{{product.desc}}</p>
+                        <h3 class="card-text text-success fw-bold">Rs. {{product.price}}</h1>
+                        <p class="card-text"><small class="text-body-secondary">{{product.created_at}}</small></p>
+                    </div>
+                        <form action="/add-to-cart" class="d-inline">
+                            <input type="hidden" name="prod_id" value={{product.id}}>
+                            <button type="submit" class="btn btn-primary margin shadow px-5 py-2">Add to Cart</button>
+                        </form>
+                            <a href="{% url 'showcart' %}" class="btn btn-success shadow px-5 py-2 ms-4">Buy Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

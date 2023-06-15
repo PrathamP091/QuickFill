@@ -1,0 +1,54 @@
+{% extends 'app/base.html' %}
+{% block title %}Login{% endblock title %}
+{% block body %}
+{% load static %}
+
+<style>
+    .font{
+        font-family: Gilroy;
+        font-weight: 500;
+    }
+</style>
+
+<section class="vh-100 font" style="background: linear-gradient(#000000aa, #00000000), url({% static 'app/img/banner/bgp.jpg' %}); background-size: cover;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-left align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card text-black border-0" style="margin-top: 60px; border-radius: 0.7rem; background: hsla(0, 0%, 100%, 0.55); backdrop-filter: blur(30px);">
+            <div class="card-body p-5 text-left">
+              <div class="mb-md-5 mt-md-4 pb-0">
+                <h2 class="fw-bold mb-2 text-uppercase text-success">Login</h2>
+                <p class="text-50 mb-5">Please enter your login and password!</p>
+  
+                <form method="post" action ="" novalidate class="">
+                  {% csrf_token %}
+                  {% for fm in form %}
+                    {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
+                    <br>
+                  {% endfor %}
+                  <p class="mb-0 mt-0">
+                    <a href="{% url 'password_reset' %}" class="text-50 fw-bold text-success">Forget Password?</a>
+                  </p>
+                  <br>
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-success px-4 fw-bold">LOGIN</button>
+                  </div>
+                  <br>
+                  <p class="mb-0 mt-0">New User?
+                    <a href="{% url 'customerregistration' %}" class="text-50 fw-bold text-success">Create an Account</a>
+                  </p>
+                
+                </form>
+                {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                        <p class="alert alert-danger my-3">{{error}}</p>
+                    {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock body %}

@@ -1,0 +1,55 @@
+{% extends 'app/base.html' %}
+{% block title %}Address{% endblock title %}
+{% block body %}
+{% load static %}
+
+<style>
+    *{
+        font-family: Gilroy;
+    }
+
+    .container{
+        font-weight: 500;
+    }
+
+    .card{
+        background: rgba(16, 139, 0, 0.12);
+    }
+</style>
+
+<br><br><br>
+<div class="container my-4">
+    <div class="row">
+        <h2 class="fw-bold">Welcome <span class="text-success">{{request.user}}</span>!</h2>
+    
+        <div class="col-sm-2 border-end">
+            <ul class="list-unstyled">
+                <li class="d-grid"><a href="{% url 'profile' %}" class="btn">Profile</a></li>
+                <li class="d-grid"><a href="{% url 'address' %}" class="btn btn-success">Address</a></li>
+            </ul>
+        </div>
+
+        <div class="card shadow border-0 p-4 col-sm-8 offset-sm-1">
+            <div class="row">
+                {% for ad in add %}
+                    <div class="col-sm-6">
+                        <div class="card shadow border-0 m-2 mt-4">
+                            <div class="card-body">
+                            <h3 class="fw-bold">Address {{forloop.counter}}</h3>
+                            <p>Name: {{ad.name}}</p>
+                            <p>Locality: {{ad.locality}}</p>
+                            <p>City: {{ad.city}}</p>
+                            <p>State: {{ad.state}}</p>
+                            <p>Pincode: {{ad.zipcode}}</p>
+                            <p>Mobile: {{ad.mobile}}</p>
+                            <p class="text-left"><a href="{% url 'updateAddress' pk=ad.id %}" type="button" class="btn btn-success">Update</a></p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

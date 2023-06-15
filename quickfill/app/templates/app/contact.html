@@ -1,0 +1,78 @@
+{% extends 'app/base.html' %}
+{% block title %}Contact{% endblock title %}
+{% block body %}
+{% load bootstrap_icons %}
+{% load static %}
+
+<style>
+  *{
+    color: #2d2d2d;
+  }
+</style>
+
+<section class="vh-100" style="font-family: montserrat; background: linear-gradient(#000000aa, #00000000), url({% static 'app/img/banner/bgp.jpg' %}); background-size: cover;">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-9">
+
+          <div class="card text-black d-flex flex-row justify-content-center align-items-center" style="margin-top: 60px; border-radius: 0.7rem; background: hsla(0, 0%, 100%, 0.55); backdrop-filter: blur(20px);">
+
+            <div class="d-flex flex-row">
+
+            <div class="card-body p-5 text-left">
+              <div class="mb-md-1 pb-0">
+                <h2 class="fw-bold mb-2 text-uppercase">Contact Us</h2>
+                <p class="text-50 mb-5">Please enter your details below!</p>
+                <br>
+                
+                <form method="post" action ="/contact" class="row g-3">
+                  {% csrf_token %}
+                <div class="form-floating col-12 mb-3">
+                  <input type="name" class="form-control" id="floatingName" placeholder="name" name="name" style="background: hsla(0, 0%, 100%, 0.55); backdrop-filter: blur(30px);" required/>
+                  <label for="floatingName" class="mx-2">Full Name</label>
+                </div>
+  
+                <div class="form-floating col-md-6 mb-3">
+                  <input type="email" class="form-control" id="floatingEmail" name="email" placeholder="name@example.com" style="background: hsla(0, 0%, 100%, 0.55); backdrop-filter: blur(30px);" required />
+                  <label for="floatingEmail" class="mx-2">Email address</label>
+                </div>
+  
+                <div class="form-floating col-md-6">  
+                  <input type="phone" class="form-control" id="floatingPhone" name="phone" placeholder="Phone" style="background: hsla(0, 0%, 100%, 0.55); backdrop-filter: blur(30px);" required />
+                  <label for="floatingPhone" class="mx-2">Phone</label>
+                </div>
+
+                <div class="form-floating col-12 mb-3">
+                    <input type="message" class="form-control" id="floatingMessage" name="message" placeholder="Message" style="background: hsla(0, 0%, 100%, 0.55); backdrop-filter: blur(30px);" required/>
+                    <label for="floatingMessage" class="mx-2">Message</label>
+                  </div>
+                  
+                  <div class="">
+                <button class="btn btn-outline-dark btn-lg px-5 fw-bold" type="submit">Submit</button>
+                </div>
+              </div>
+              
+              </form>
+            </div>
+
+            <div>
+              <div class="" style="min-width: 50vh;">
+                <div class="" style="margin-top: 40%; padding: 3rem;">
+                  <p>{% bs_icon 'geo-alt-fill' size='1.3em' color='#006837' %}&nbsp; Badlapur, Patil Nagar, 421 503</p><br>
+                  <p>{% bs_icon 'telephone-inbound-fill' size='1.3em' color='#006837' %}&nbsp; +918805685534 / +919967900347</p><br>
+                  <p>{% bs_icon 'envelope-at-fill' size='1.3em' color='#006837' %}&nbsp; fueldoor@gmail.com</p>
+                </div>
+              </div>
+            </div>  
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    {% endblock body %}
+    {% comment %} <p class="text-center text-white m-0 p-3" style="background: hsla(0, 0%, 100%, 0.55); backdrop-filter: blur(30px);">
+      <small>
+        &copy; <script>document.write(new Date().getFullYear())</script> - <a href="https://github.com/shubham-singh-singh" target="_blank">Shubham Singh</a> {% endcomment %}

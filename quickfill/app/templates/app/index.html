@@ -1,0 +1,233 @@
+{% extends 'app/base.html' %}
+{% block title %}Home{% endblock title %}
+{% block body %}
+{% load static %}
+
+
+<style>
+*{
+  font-family: Gilroy;
+}
+
+.img-gradient {
+  position:relative;
+}
+
+
+.img-gradient::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, rgba(0,0,0,0.60) 0%, rgba(255,255,255,0) 100%);
+}
+
+.weight{
+  font-weight: 500;
+}
+
+</style>
+
+{% comment %} --------IMAGE CAROUSEL------ {% endcomment %}
+
+<div class="container-fluid px-0" style="">
+  <div id="carouselExampleCaptions" class="carousel slide carousel-fade" >
+
+      <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner" style="font-family: montserrat; letter-spacing: 1px; word-spacing: 1px;">
+        
+        <div class="carousel-item active" data-bs-interval="4000">
+          <div class="img-gradient">
+          <img src="{% static "app/img/banner/truckbg.jpg" %}" style="height: 80vh;" class="d-block w-100" alt="fuelpump" >
+        </div>
+            <div class="carousel-caption d-none d-md-block" style="position: absolute; left: 30vh; top: 20vh; text-align: left;" >
+              <h1 style="font-weight: 600; font-size: 4.5em;">Welcome to <br><span style="color: #93EC6A;">QuickFill!<span></h1><br>
+              <h3 style="font-weight: 600; font-size: 3em;">Our <span style="color: #93EC6A;">24/7</span> Doorstep Fuel Delivery Service.</h3>
+              <hr>
+              <p style="font-size: 1.2em;">Reduce the carbon footprint associated with driving to and from a gas station.</p>
+              <hr><br>
+              <br>
+            </div>
+        </div>
+
+        <div class="carousel-item" data-bs-interval="4000">
+          <div class="img-gradient">
+          <img src="{% static "app/img/banner/pump1 (1).jpg" %}" style="height: 80vh;" class="d-block w-100" alt="fueltruck">
+          </div>
+            <div class="carousel-caption d-none d-md-block" style="position: absolute; left: 30vh; top: 20vh; text-align: left;">
+              <h1 style="font-weight: 600; font-size: 4.5em;">Makes <br>Environmentally <br><span style="color: #93EC6A;">Friendly.</span></h1>
+              <hr>
+              <p style="font-size: 1.2em;">The fuel is brought directly to you, wherever you are.</p>
+              <hr><br>
+              <br>
+            </div>
+        </div>
+
+        <div class="carousel-item" data-bs-interval="4000">
+          <div class="img-gradient">
+          <img src="{% static "app/img/banner/canbg.png" %}" style="height: 80vh;" class="d-block w-100" alt="fuelcan">
+          </div>
+            <div class="carousel-caption d-none d-md-block" style="position: absolute; left: 30vh; top: 20vh; text-align: left;">
+              <h1 style="font-weight: 600; font-size: 4.5em;">Gas delivery made <br><span style="color: #93EC6A;">easy</span> and <br><span style="color: #93EC6A;">convenient.</span></h1>
+              <hr>
+              <p style="font-size: 1.2em;">Simple Ordering | Fast Delivery | No Waiting in Line | Easy Payment</p>
+              <hr><br>
+              <br>
+            </div>
+        </div>
+      </div>
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon mx-0" style="position: absolute; left: 30px;" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+        <span class="carousel-control-next-icon mx-0" style="position: absolute; right: 30px;" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+      </div>
+    </div>
+</div> 
+
+{% comment %} ------------- PRODUCT CARDS --------------- {% endcomment %}
+
+<div class="container py-5">
+  <h1 class="fw-bold">Our Products</h1>
+  <div class="row row-cols-1 row-cols-md-3 g-4 py-4">
+    <div class="col">
+      <a href="{% url 'category' 'petrol' %}" class="btn text-decoration-none">
+      <div class="card" style="height: 550px;">
+        <img src="{% static "app/img/fuels/20Ltrs_qxsPPST.jpeg" %}"height="" width="auto" class="card-img-top" alt="">
+        <div class="card-body">
+          <h3 class="card-title fw-bold">QuickFill Cans for <span style="color: green;">Petrol</span>.</h3>
+          <p class="card-text weight">Whether storing fuel for your power equipment or emergency, having the best storage can for you helps.</p>
+          <p class="card-text text-success weight">View Products>></p>
+        </div>
+      </div>
+    </a>
+    </div>
+
+    <div class="col">
+      <a href="{% url 'category' 'diesel' %}" class="btn text-decoration-none">
+      <div class="card" style="height: 550px;">
+        <img src="{% static "app/img/fuels/20Ltrs_qxsPPST.jpeg" %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h3 class="card-title fw-bold">QuickFill Cans for <span style="color: green;">Diesel</span>.</h3>
+          <p class="card-text weight">A high-quality a can make filling your machinery or generator easy, in addition to providing a safe, leak-proof container for storage or transporting.</p>
+          <p class="card-text text-success weight">View Products>></p>
+        </div>
+      </div>
+    </a>
+    </div>
+
+    <div class="col">
+      <a href="{% url 'category' 'engineoil' %}" class="btn text-decoration-none">
+      <div class="card" style="height: 550px;">
+        <img src="{% static "app/img/fuels/catroldiesel5ltrs.jpeg" %}" height="320px" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h3 class="card-title fw-bold"><span style="color: green;">Engine Oil</span>.</h3>
+          <p class="card-text weight">Car lubricant plays an important role in ensuring that your car's engine runs smooth and has unparalleled performance. You can get these car lubricant oils online with guaranteed services for your engine's longer shelf-life. </p>
+          <p class="card-text text-success weight">View Products>></p>
+        </div>
+      </div>
+    </a>
+    </div>
+  </div> 
+</div>
+
+<!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <div class="container marketing">
+    <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading fw-normal lh-1">First featurette heading. <span class="text-body-secondary">It’ll blow your mind.</span></h2>
+        <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+      </div>
+      <div class="col-">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading fw-normal lh-1">Oh yeah, it’s that good. <span class="text-body-secondary">See for yourself.</span></h2>
+        <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+      </div>
+      <div class="col- order-md-1">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading fw-normal lh-1">And lastly, this one. <span class="text-body-secondary">Checkmate.</span></h2>
+        <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
+      </div>
+      <div class="col-">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+
+  </div><!-- /.container -->
+
+
+
+{% comment %} <div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col">
+    <div class="card">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h3 class="card-title">Card title</h3>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h3 class="card-title">Card title</h3>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h3 class="card-title">Card title</h3>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h3 class="card-title">Card title</h3>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+</div> {% endcomment %}
+
+
+
+{% comment %} text-shadow: 0px 0px 30px black, 0 0 0.5em black {% endcomment %}
+{% endblock body %}
