@@ -6,10 +6,26 @@
     *{
         font-family: Gilroy;
     }
+
+    .weight {
+        font-weight: 500;
+    }
+
+    .card{
+        background: rgba(16, 139, 0, 0.12);
+        border-radius: 4px;
+        box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+        transition: 1s transform cubic-bezier(.155,1.105,.295,1.12),1s box-shadow,1s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+      cursor: pointer;
+      }
+      .card:hover{
+        transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+      }
 </style>
 
 <br><br><br><br>
-<div class="container">
+<div class="container weight">
     <div class="row">
         <div class="col-sm-3">
             <div class="list-group">    
@@ -24,10 +40,15 @@
                 {% for prod in product %}
                 <div class="card col mx-4" style="width: 18rem;">
                     <a href="{% url 'product-detail' prod.id %}" class="btn text-decoration-none">
-                    <img src='/media/{{prod.image}}' width="300px" height="200px" class="card-img-top" alt="...">
+                    <img src='/media/{{prod.image}}' width="400px" height="250px" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title fw-bold">{{prod.name}}</h5>
                       <h4 class="card-text fw-bold text-success">Rs. {{prod.price}}</h4>
+                      {% if out_of_stock %}
+                        <h3 class="text-danger fw-bold px-3 py-2">Out of Stock</h3>
+                    {% else %}
+                      <p class="card-text text-primary weight">View Product>></p>
+                      {% endif %}
                     </div>
                 </a>
                 </div>

@@ -105,14 +105,14 @@
       
         <ul class="navbar-nav me-auto mb-2 mx-2 mb-lg-0" style="font-weight: 600; font-size: 20px;">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="btn btn-success nav-link dropdown-toggle mx-2 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Fuels
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{% url 'category' 'petrol' %}">Petrol</a></li>
-              <li><a class="dropdown-item" href="{% url 'category' 'diesel' %}">Diesel</a></li>
+              <li><a class="dropdown-item fw-semibold" href="{% url 'category' 'petrol' %}">Petrol</a></li>
+              <li><a class="dropdown-item fw-semibold" href="{% url 'category' 'diesel' %}">Diesel</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="{% url 'category' 'engineoil' %}">Engine Oil</a></li>
+              <li><a class="dropdown-item fw-semibold" href="{% url 'category' 'engineoil' %}">Engine Oil</a></li>
             </ul>
           </li>
           <li class="nav-item">
@@ -123,47 +123,36 @@
           </li>
         </ul>
 
+        {% if user.is_authenticated %}
         <ul class="navbar-nav mb-2 mb-lg-0" style="font-weight: 600; font-size: 20px;">
 
           <li class="nav-item dropdown mx-2">
-            <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle= "dropdown" aria-expanded="false" >Pratham</a>
+            <a class="btn btn-success mx-3 nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle= "dropdown" aria-expanded="false" >{{request.user}} </a>
             <ul class="dropdown-menu" aria-labelledby="profileDropdown">  
-              <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
-              <li><a class="dropdown-item" href="{% url 'orders' %}">Orders</a></li> 
-              <li><a class="dropdown-item" href="{% url 'passwordchange' %}">Change Password</a></li>
-              <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+              <li><a class="dropdown-item fw-semibold" href="{% url 'profile' %}">Profile</a></li>
+              <li><a class="dropdown-item fw-semibold" href="{% url 'orders' %}">Orders</a></li> 
+              <li><a class="dropdown-item fw-semibold" href="{% url 'passwordchange' %}">Change Password</a></li>
+              <li><a class="dropdown-item fw-semibold" href="{% url 'logout' %}">Logout</a></li>
             </ul>
           </li>
 
-          <li class="nav-item mx-2">
-            <a href="{% url 'showcart' %}" class="nav-link"><span class="badge bg-danger">{% if totalitem > 0 %}{{totalitem}}{% endif %}</span>Cart </a>
+          <li class="btn btn-sm btn-success nav-item mx-2 px-3 my-0 py-0 fw-semibold">
+            <a href="{% url 'showcart' %}" class="nav-link"><span class=" text-white" style="font-size: 1.2em;">Cart</span><span class="badge bg-danger">{% if totalitem > 0 %}{{totalitem}}{% endif %}</span></a>
           </li>
-          <li class="nav-item mx-2">
-            <a href="{% url 'login' %}" class="nav-link">Login</a>
-          </li>
-          <li class="nav-item mx-2">
-            <a href="{% url 'customerregistration' %}" class="nav-link">Register</a>
-          </li>
-        
         </ul>
+          {% else %}
+        <ul class="navbar-nav mb-2 mb-lg-0" style="font-weight: 600; font-size: 20px;">
+          <li class="nav-item mx-3 btn btn-sm btn-success shadow-lg rounded rounded-sm px-4 my-0 py-0 fw-semibold">
+            <a href="{% url 'login' %}" class="nav-link text-white"><span style="font-size: 1.2em;">Login</span></a>
+          </li>
+          <li class="nav-item mx-3 btn btn-sm btn-success shadow-lg rounded rounded-sm px-4 my-0 py-0 fw-semibold">
+            <a href="{% url 'customerregistration' %}" class="nav-link text-white"><span style="font-size: 1.2em;">Register</span></a>
+          </li>
+        </ul>
+        
+        {% endif %}
       
       </div>
-      {% comment %} <div class="mx-0" >
-        {% if user.is_authenticated %}
-        <h1 style="font-family: montserrat; font-weight: 600; font-size: 21px; color: black; padding-top: 5px; margin-top: 5px;">{% bs_icon 'person-circle' size='1.3em' color='#006837' %}Hello {{request.user}},</h1>
-      </div>
-      <div class="" style="margin-right: 1em; margin-left: 1em; color: blue; font-size: 1.3em;">
-        <a class="btn btn-outline-danger text-black btn-lg shadow-lg rounded rounded-sm" style="font-weight: 600; text-shadow: none" href="/logout" role="button">Sign Out</a>
-      </div>
-      <div>
-        {% else %}
-        <a class="btn btn-outline-success btn-lg shadow-lg rounded rounded-sm" style="font-family: montserrat; font-weight: 700; font-size: 20px; font-size: 20px;" class="nav-item nav-link" href="/login">Login</a>
-      </div>
-      <div>
-        <a class="btn btn-outline-success btn-lg shadow-lg rounded rounded-sm" style="font-family: montserrat; font-weight: 700; font-size: 20px; margin-right: 1em; margin-left: 1em; font-size: 20px;" class="nav-item nav-link" href="/signup">Register</a>
-      </div>
-        {% endif %}
-      {% endcomment %}
     
     </div>
   </nav>

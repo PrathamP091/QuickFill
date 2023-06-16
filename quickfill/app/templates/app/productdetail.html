@@ -24,6 +24,13 @@
     .btn-lg {
         max-width: 680px;
     }
+    .card{
+        background: rgba(16, 139, 0, 0.12);
+        border-radius: 4px;
+        box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+        transition: 1s transform cubic-bezier(.155,1.105,.295,1.12),1s box-shadow,1s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+      cursor: pointer;
+      }
 </style>
 
 <div class="container">
@@ -31,7 +38,7 @@
         <div class="card p-5">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src='/media/{{product.image}}' height="300px" width="" class="" alt="...">
+                    <img src='/media/{{product.image}}' height="300px" width="300px" class="" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -41,11 +48,15 @@
                         <h3 class="card-text text-success fw-bold">Rs. {{product.price}}</h1>
                         <p class="card-text"><small class="text-body-secondary">{{product.created_at}}</small></p>
                     </div>
+                    {% if out_of_stock %}
+                        <h3 class="text-danger fw-bold px-3 py-2">Out of Stock</h3>
+                    {% else %}
                         <form action="/add-to-cart" class="d-inline">
-                            <input type="hidden" name="prod_id" value={{product.id}}>
+                            <input type="hidden" name="prod_id" value="{{ product.id }}">
                             <button type="submit" class="btn btn-primary margin shadow px-5 py-2">Add to Cart</button>
                         </form>
-                            <a href="{% url 'showcart' %}" class="btn btn-success shadow px-5 py-2 ms-4">Buy Now</a>
+                        <a href="{% url 'showcart' %}" class="btn btn-success shadow px-5 py-2 ms-4">Buy Now</a>
+                    {% endif %}
                 </div>
             </div>
         </div>

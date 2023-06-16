@@ -12,6 +12,14 @@
         font-weight: 500;
         font-size: 1.2em;
     }
+
+    .card{
+        background: rgba(16, 139, 0, 0.12);
+        border-radius: 4px;
+        box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+        transition: 1s transform cubic-bezier(.155,1.105,.295,1.12),1s box-shadow,1s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+      cursor: pointer;
+    }
 </style> 
 
 <br><br><br>
@@ -23,7 +31,7 @@
                 <li class="d-grid"><a href="{% url 'orders' %}" class="btn btn-success fw-bold">Orders</a></1i>
             </ul>
         </div>
-    
+        {% comment %} {% if order %} {% endcomment %}
         <div class="card p-4 col-sm-9 offset-sm-1">
             {% for op in order_placed %}
             <div class="row">
@@ -32,9 +40,9 @@
                  </div>
 
                  <div class="col-sm-7 weight">
-                    <p>Product : {{op.product.name}}</p>
+                    <p class="fw-bold">Product : {{op.product.name}}</p>
                     <p>Quantity: {{op.quantity}}</p>
-                    <p>Price: Rs. {{op.total_cost}}</p>
+                    <p class="fw-bold">Price: Rs. {{op.total_cost}}</p>
                 </div>
 
                 <div class="col-sm-3">
@@ -68,6 +76,11 @@
             </div>
             {% endfor %}
             </div>
+                {% comment %} {% else %}
+                    <h1 class="text-center mb-5 fw-bold">Orders Empty</h1>
+                    <div class="text-center">
+                        <a href="{% url 'category' 'petrol' %}" class="btn btn-lg btn-outline-success col-2 text-success text-black mb-5 fw-semibold">Shop Now.</a>
+                {% endif %} {% endcomment %}
         </div>
     </div>
 

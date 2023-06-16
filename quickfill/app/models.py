@@ -41,12 +41,12 @@ CATEGORY_CHOICES=(
 )
 
 STATUS_CHOICES = {
+    ('pending','Pending'),
     ('accepted','Accepted'),
     ('packed','Packed'),
     ('on the way','On The Way'),
     ('delivered','Delivered'),
     ('cancel','Cancel'),
-    ('pending','Pending')
 
 }
 
@@ -60,6 +60,7 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to="fuels", default="")
+    stock_quantity = models.PositiveIntegerField(default=0)  # Add the stock_quantity field
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -113,3 +114,11 @@ class OrderPlaced(models.Model):
     @property
     def total_cost(self):
         return self.quantity * self.product.price
+    
+class Contact(models.Model) :
+    name = models.CharField(max_length = 50)
+    email = models.EmailField()
+    phone = models.CharField(max_length = 10)
+    message = models.TextField(max_length = 500)
+    def __str__(self):
+        return self.name

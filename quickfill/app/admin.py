@@ -1,5 +1,5 @@
 from django.contrib import admin
-from app.models import Product, Customer, Cart, Payment, OrderPlaced
+from app.models import Product, Customer, Cart, Payment, OrderPlaced, Contact
 from django.utils.html import format_html
 from django.urls import reverse
 
@@ -37,3 +37,7 @@ class OrderPlacedModelAdmin(admin.ModelAdmin):
     def payments(self,obj):
         link = reverse("admin:app_payment_change",args=[obj.payment.pk])
         return format_html('<a href="{}">{}</a>',link,obj.payment.razorpay_payment_id)
+    
+@admin.register(Contact)
+class ontactModelAdmin(admin.ModelAdmin):
+    list_display = ['name', 'email', 'phone', 'message']

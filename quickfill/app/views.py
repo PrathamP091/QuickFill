@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, authenticate, login
 from django.views import View
-from . models import Product, Customer, Cart, Payment, OrderPlaced
+from . models import Product, Customer, Cart, Payment, OrderPlaced, Contact
 from . forms import CustomerRegistrationForm, CustomerProfileForm
 from django.contrib import messages
 import razorpay
@@ -51,12 +51,46 @@ class CategoryTitle(View):
         return render(request, 'app/category.html', locals())
 
 class ProductDetail(View):
-    def get(self,request,pk):
+    def get(self, request, pk):
         product = Product.objects.get(pk=pk)
         totalitem = 0
+        out_of_stock = False
+        
         if request.user.is_authenticated:
             totalitem = len(Cart.objects.filter(user=request.user))
-        return render(request, 'app/productdetail.html', locals())
+        
+        if product.stock_quantity <= 0:
+            out_of_stock = True
+
+        return render(request, 'app/productdetail.html', {
+            'product': product,
+            'totalitem': totalitem,
+            'out_of_stock': out_of_stock,
+        })
+
+    # def get(self, request, pk):
+    #     product = Product.objects.get(pk=pk)
+    #     totalitem = 0
+    #     out_of_stock = False  # Add this line to initialize out_of_stock variable
+        
+    #     if request.user.is_authenticated:
+    #         totalitem = len(Cart.objects.filter(user=request.user))
+        
+    #     if product.stock <= 0:  # Assuming 'stock' is the field indicating the product's stock quantity
+    #         out_of_stock = True
+
+    #     return render(request, 'app/productdetail.html', {
+    #         'product': product,
+    #         'totalitem': totalitem,
+    #         'out_of_stock': out_of_stock,  # Include the out_of_stock variable in the context
+    #     })
+    
+    # def get(self,request,pk):
+    #     product = Product.objects.get(pk=pk)
+    #     totalitem = 0
+    #     if request.user.is_authenticated:
+    #         totalitem = len(Cart.objects.filter(user=request.user))
+    #     return render(request, 'app/productdetail.html', locals())
     
 class CustomerRegistrationView(View):
     def get(self, request):
@@ -273,3 +307,15 @@ def orders(request):
         totalitem = len(Cart.objects.filter(user=request.user))
     order_placed = OrderPlaced.objects.filter(user=request.user)
     return render(request, 'app/orders.html', locals())
+
+def contact(request):
+    if request.method == "POST" :
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        message = request.POST.get('message')
+        contact = Contact(name=name, email=email, phone=phone, message=message)
+        contact.save()
+        messages.success(request, "Your Contact Details has been Submitted!")
+
+    return render(request, 'app/contact.html')

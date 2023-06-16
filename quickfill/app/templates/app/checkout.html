@@ -11,6 +11,19 @@
     .weight {
         font-weight: 500;
     }
+
+    .card{
+        background: rgba(16, 139, 0, 0.12);
+        border-radius: 4px;
+        box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+        transition: 1s transform cubic-bezier(.155,1.105,.295,1.12),1s box-shadow,1s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+      cursor: pointer;
+    }
+
+    .font{
+        font-size: 1.5em;
+    }
+    
 </style> 
 
 <br><br><br>
@@ -37,9 +50,9 @@
             </div>
             {% endfor %}
 
-            <p class="fw-bold">Total Cost + Free Shipping = Rs.{{totalamount}}</p>
-            <p class="weight">Term and Condition: Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, ullam saepe! Iure optio
-            minus rem. Facilis cumque neque numquam laboriosam, accusantium adipisci nisi nihil in et quis?</p>
+            <p class="fw-bold font">Total Cost + Free Shipping = <span class="text-success">Rs.{{totalamount}}</span></p>
+            <p class="weight">Term and Condition: You are responsible for creating and maintaining an accurate and secure account, Provide accurate delivery information and authorize payment for your order.</p>
+            <p>By using QuickFill, you acknowledge your agreement with these terms and conditions.</p>
         </div>
 
         <div class="col-sm-4 offset-sm-1">
